@@ -1,0 +1,30 @@
+ void SecondaryAttack()
+    {
+        if (timebtwsecondary <= 0)
+        {
+            Vector3 pos = transform.position;
+            pos += transform.right*Mathf.Sin(Time.time * frequency) * amplitude;
+            GameObject clone=Instantiate(bullet, pos, transform.rotation);
+            clone.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            clone.GetComponent<Rigidbody2D>().AddForce(-transform.up* speed*20f);
+
+
+            Vector3 pos1 = transform.position;
+            pos1 += transform.right*Mathf.Sin(Time.time * frequency) * -amplitude;
+            GameObject clone1 = Instantiate(bullet, pos1, transform.rotation);
+            clone1.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            clone1.GetComponent<Rigidbody2D>().AddForce(-transform.up * speed *20f);
+
+            timebtwsecondary = secondaryfirerate;
+        }
+        else
+        {
+            timebtwsecondary -= Time.deltaTime;
+        }
+    }
+
+
+angle-60
+frate-0.1
+freq-30
+amp-1
